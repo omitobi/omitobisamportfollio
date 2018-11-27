@@ -1,18 +1,19 @@
 <template>
   <div id="app">
     <div class="profile-card">
-      <profile-picture>
-      </profile-picture>
+      <profile-cover>
+      </profile-cover>
       <router-view/>
     </div>
   </div>
 </template>
 
 <script>
-import ProfilePicture from './components/ProfilePicture'
+import ProfileCover from './components/ProfileCover'
 
 export default {
-  components: {ProfilePicture},
+  components: {
+    ProfileCover},
   name: 'App'
 }
 </script>
