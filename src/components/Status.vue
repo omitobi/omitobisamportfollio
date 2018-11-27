@@ -1,7 +1,7 @@
 <template>
   <div class="profile-status">
     <p>
-      The grace of God saved sinners of whom I am the <em>WORST!</em>
+      Christ Jesus came into the world to save sinners -- of whom I am the worst. <em>WORST!</em> - 1 Timothy 1:24 (NIV)
     </p>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
 <style scoped>
 .profile-status {
   color: gray;
-  width: 50%;
+  width: 60%;
   display: block;
   margin-left: auto;
   margin-right: auto;
