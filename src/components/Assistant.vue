@@ -40,7 +40,7 @@ export default {
           type: 'text',
           author: `Omitobisam`,
           data: {
-            text: `Hi, Welcome to my portfolio.\n Please shoot your questions.`,
+            text: `Hi, Welcome to my portfolio.\n You can shoot your questions to me here. But this feature is coming soon :)`,
             meta: moment().format('DD-MM-YYYY m:h:s a')
           },
           suggestions: ['Looks good!', 'It\'s OK.', 'Uhh.. Do I really have to say something?', 'This suggestion is way too long for css purpose. Lets make it long... Longer, and more and more.. Never ending.']
