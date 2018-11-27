@@ -3,11 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Chat from 'vue-beautiful-chat'
+import BeautifulChat from 'vue-beautiful-chat'
 
 Vue.config.productionTip = false
 
-Vue.use(Chat, {})
+Vue.use(BeautifulChat, {})
 
 /* eslint-disable no-new */
 new Vue({
