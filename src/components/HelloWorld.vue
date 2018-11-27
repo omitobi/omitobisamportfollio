@@ -1,12 +1,14 @@
 <template>
   <div class="hello">
     <h1 class="message">{{ msg }}</h1>
-    <ul class="small-text tech-tags">
+    <ul class="very-small-text tech-tags">
       <li><a href="#">#PHP</a></li>
       <li><a href="#">#Laravel</a></li>
       <li><a href="#">#VueJS</a></li>
       <li><a href="#">#IBMWatson</a></li>
+      <li><a href="#">#ReactNative</a></li>
       <li><a href="#">#AWS</a></li>
+      <li><a href="#">#PWA</a></li>
       <li><a href="#">#NodeJS</a></li>
     </ul>
     <status>
@@ -103,7 +105,7 @@ a {
 .message {
   font-size: calc(100% + 10px);
 }
-.small-text {
+.very-small-text {
   font-size: 8px;
 }
 .purple-color {
