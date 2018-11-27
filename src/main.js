@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import BeautifulChat from 'vue-beautiful-chat'
 
 Vue.config.productionTip = false
+
+Vue.use(BeautifulChat, {})
 
 /* eslint-disable no-new */
 new Vue({
