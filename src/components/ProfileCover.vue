@@ -19,7 +19,7 @@ export default {
   width: 100%;
   background: aliceblue;
   border-bottom: 2px solid lightgrey;
-  border-radius: 0 0 12px 12px;
+  border-radius: 12px 12px 0 0;
   background: url("../assets/wretched_good_people.jpg");
   background-repeat: repeat;
   /*height: 20%;*/
