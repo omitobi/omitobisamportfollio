@@ -19,11 +19,10 @@
 </template>
 
 <script>
-import Chat from 'vue-beautiful-chat'
 
 export default {
   name: 'Assistant',
-  components: {Chat},
+  components: {},
   data () {
     return {
       participants: [

@@ -1,33 +1,20 @@
 <template>
   <div id="app">
     <div class="profile-card">
-      <profile-cover>
-      </profile-cover>
+      <profile-cover />
       <router-view/>
-      <beautiful-chat
-        :participants="participants"
-        :titleImageUrl="titleImageUrl"
-        :onMessageWasSent="onMessageWasSent"
-        :messageList="messageList"
-        :newMessagesCount="newMessagesCount"
-        :isOpen="isChatOpen"
-        :close="closeChat"
-        :open="openChat"
-        :showEmoji="true"
-        :showFile="true"
-        :showTypingIndicator="showTypingIndicator"
-        :colors="colors"
-        :alwaysScrollToBottom="alwaysScrollToBottom"
-        :messageStyling="messageStyling" />
+      <assistant />
     </div>
   </div>
 </template>
 
 <script>
 import ProfileCover from './components/ProfileCover'
+import Assistant from './components/Assistant'
 
 export default {
   components: {
+    Assistant,
     ProfileCover},
   name: 'App',
   data () {
