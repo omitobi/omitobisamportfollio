@@ -9,7 +9,7 @@
       :isOpen='isChatOpen'
       :close='closeChat'
       :open='openChat'
-      :showEmoji='true'
+      :showEmoji='false'
       :showFile='false'
       :showTypingIndicator='showTypingIndicator'
       :colors='colors'
@@ -27,6 +27,7 @@ export default {
   components: {},
   data () {
     return {
+      discuss: '',
       participants: [
         {
           id: 'Omitobisam',
@@ -35,17 +36,7 @@ export default {
         }
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
-      messageList: [
-        {
-          type: 'text',
-          author: `Omitobisam`,
-          data: {
-            text: `Hi, Welcome to my portfolio.\n You can shoot your questions to me here. But this feature is coming soon :)`,
-            meta: moment().format('DD-MM-YYYY m:h:s a')
-          },
-          suggestions: ['Looks good!', 'It\'s OK.', 'Uhh.. Do I really have to say something?', 'This suggestion is way too long for css purpose. Lets make it long... Longer, and more and more.. Never ending.']
-        }
-      ], // the list of the messages to show, can be paginated and adjusted dynamically
+      messageList: [], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
       showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
@@ -87,6 +78,36 @@ export default {
     onMessageWasSent (message) {
       // called when the user sends a message
       this.messageList = [ ...this.messageList, message ]
+      this.requestReply(message)
+    },
+    requestReply (message) {
+      const self = this
+      self.showTyping('Omitobisam')
+      window.axios.post('http://omitobisam.test/message', {text: message.data.text, discuss: self.discuss})
+        .then(({data}) => {
+          this.addMessageToList(data.response)
+          self.discuss = data.discuss
+        }).catch(() => {
+          const message_ = {
+            type: 'text',
+            author: `Omitobisam`,
+            data: {
+              text: `Hi. Can't quite give you the right response right now. I'll be right back.`,
+              meta: moment().format('DD-MM-YYYY m:h:s a')
+            },
+            suggestions: ['Looks good!', 'It\'s OK.', 'Uhh.. Do I really have to say something?', 'This suggestion is way too long for css purpose. Lets make it long... Longer, and more and more.. Never ending.']
+          }
+          this.addMessageToList(message_)
+        }).then(() => {
+          self.showTyping('')
+        })
+    },
+    addMessageToList (message) {
+      this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
+      this.messageList.push(message)
+    },
+    showTyping (forUser = '') {
+      this.showTypingIndicator = forUser
     },
     openChat () {
       // called when the user clicks on the fab button to open the chat
@@ -97,6 +118,9 @@ export default {
       // called when the user clicks on the botton to close the chat
       this.isChatOpen = false
     }
+  },
+  created () {
+    this.requestReply({data: {text: ''}})
   }
 }
 </script>

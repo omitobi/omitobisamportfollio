@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import axios from 'axios'
 import App from './App'
 import router from './router'
 import BeautifulChat from 'vue-beautiful-chat'
@@ -8,6 +9,11 @@ import BeautifulChat from 'vue-beautiful-chat'
 Vue.config.productionTip = false
 
 Vue.use(BeautifulChat, {})
+
+window.axios = axios
+
+// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+window.axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 
 /* eslint-disable no-new */
 new Vue({
