@@ -83,11 +83,11 @@ export default {
     requestReply (message) {
       const self = this
       self.showTyping('Omitobisam')
-      window.axios.post('http://omitobisam.test/message', {text: message.data.text, discuss: self.discuss})
+      window.axios.post('https://dev.omitobisam.com/api/message', {text: message.data.text, discuss: self.discuss})
         .then(({data}) => {
           this.addMessageToList(data.response)
           self.discuss = data.discuss
-        }).catch(() => {
+        }).catch(({response}) => {
           const message_ = {
             type: 'text',
             author: `Omitobisam`,
@@ -95,7 +95,7 @@ export default {
               text: `Hi. Can't quite give you the right response right now. I'll be right back.`,
               meta: moment().format('DD-MM-YYYY m:h:s a')
             },
-            suggestions: ['Looks good!', 'It\'s OK.', 'Uhh.. Do I really have to say something?', 'This suggestion is way too long for css purpose. Lets make it long... Longer, and more and more.. Never ending.']
+            suggestions: ['Looks good!']
           }
           this.addMessageToList(message_)
         }).then(() => {
