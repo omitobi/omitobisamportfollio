@@ -1,15 +1,15 @@
 <template>
   <div class="hello">
     <h1 class="message">{{ msg }}</h1>
-    <ul class="very-small-text tech-tags">
-      <li><a href="#">#PHP</a></li>
-      <li><a href="#">#Laravel</a></li>
-      <li><a href="#">#VueJS</a></li>
-      <li><a href="#">#IBMWatson</a></li>
-      <li><a href="#">#ReactNative</a></li>
-      <li><a href="#">#AWS</a></li>
-      <li><a href="#">#PWA</a></li>
-      <li><a href="#">#NodeJS</a></li>
+    <ul class="tech-tags">
+      <li class="medium-text"><a href="#">#PHP</a></li>
+      <li class="medium-text"><a href="#">#Laravel</a></li>
+      <li class="medium-text"><a href="#">#VueJS</a></li>
+      <li class="medium-text"><a href="#">#IBMWatson</a></li>
+      <li class="medium-text"><a href="#">#ReactNative</a></li>
+      <li class="medium-text"><a href="#">#AWS</a></li>
+      <li class="medium-text"><a href="#">#PWA</a></li>
+      <li class="medium-text"><a href="#">#NodeJS</a></li>
     </ul>
     <status>
     </status>
@@ -77,7 +77,7 @@ export default {
   components: {
     Status,
     StackFlair},
-  name: 'HelloWorld',
+  name: 'Full',
   data () {
     return {
       msg: 'Oluwatobi Samuel Omisakin'
@@ -107,6 +107,9 @@ a {
 }
 .very-small-text {
   font-size: 8px;
+}
+.medium-text {
+  font-size: 14px;
 }
 .purple-color {
   color: darkorchid;
