@@ -70,15 +70,23 @@ export default {
   },
   methods: {
     sendMessage (text) {
-      if (text.length > 0) {
+      if (text.trim().length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
-        this.onMessageWasSent({ author: 'me', type: 'text', data: { text } })
+        this.onMessageWasSent({
+          author: 'me',
+          type: 'text',
+          data: {
+            text: text, meta: moment().format('DD-MM-YYYY m:h:s a')}
+        })
+        // aa
       }
     },
     onMessageWasSent (message) {
-      // called when the user sends a message
-      this.messageList = [ ...this.messageList, message ]
-      this.requestReply(message)
+      if (message.data.text.trim().length > 0) {
+        // called when the user sends a message
+        this.messageList = [ ...this.messageList, message ]
+        this.requestReply(message)
+      }
     },
     requestReply (message) {
       const self = this
