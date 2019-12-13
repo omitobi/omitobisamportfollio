@@ -76,9 +76,11 @@ export default {
           author: 'me',
           type: 'text',
           data: {
-            text: text, meta: moment().format('DD-MM-YYYY m:h:s a')}
+            text: text,
+            meta: moment().format('DD-MM-YYYY m:h:s a')
+          },
+          suggestions: ['Looks good!']
         })
-        // aa
       }
     },
     onMessageWasSent (message) {
