@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import moment from 'moment';
 
 export default {
   name: 'Assistant',
@@ -71,7 +71,7 @@ export default {
   methods: {
     sendMessage (text) {
       if (text.trim().length > 0) {
-        this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
+        this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1;
         this.onMessageWasSent({
           author: 'me',
           type: 'text',
@@ -80,24 +80,26 @@ export default {
             meta: moment().format('DD-MM-YYYY m:h:s a')
           },
           suggestions: ['Looks good!']
-        })
+        });
       }
     },
     onMessageWasSent (message) {
       if (message.data.text.trim().length > 0) {
         // called when the user sends a message
-        this.messageList = [ ...this.messageList, message ]
-        this.requestReply(message)
+        this.messageList = [ ...this.messageList, message ];
+        this.requestReply(message);
       }
     },
     requestReply (message) {
-      const self = this
-      self.showTyping('Omitobisam')
+      const self = this;
+      self.showTyping('Omitobisam');
       window.axios.post('https://dev.omitobisam.com/api/message', {text: message.data.text, discuss: self.discuss})
         .then(({data}) => {
-          this.addMessageToList(data.response)
+          this.addMessageToList(data.response);
           self.discuss = data.discuss
         }).catch(({response}) => {
+        // eslint-disable-next-line no-console
+          console.log(response);
           const message_ = {
             type: 'text',
             author: `Omitobisam`,
@@ -105,32 +107,32 @@ export default {
               text: `Hi. Can't quite give you the right response right now. I'll be right back.`,
               meta: moment().format('DD-MM-YYYY m:h:s a')
             },
-            suggestions: ['Looks good!']
-          }
-          this.addMessageToList(message_)
+            suggestions: ['What is your email?', 'What is your phone number?']
+          };
+          this.addMessageToList(message_);
         }).then(() => {
-          self.showTyping('')
+          self.showTyping('');
         })
     },
     addMessageToList (message) {
-      this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
-      this.messageList.push(message)
+      this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1;
+      this.messageList.push(message);
     },
     showTyping (forUser = '') {
       this.showTypingIndicator = forUser
     },
     openChat () {
       // called when the user clicks on the fab button to open the chat
-      this.isChatOpen = true
+      this.isChatOpen = true;
       this.newMessagesCount = 0
     },
     closeChat () {
       // called when the user clicks on the botton to close the chat
-      this.isChatOpen = false
+      this.isChatOpen = false;
     }
   },
   created () {
-    this.requestReply({data: {text: ''}})
+    this.requestReply({data: {text: ''}});
   }
 }
 </script>
