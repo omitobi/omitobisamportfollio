@@ -73,8 +73,8 @@ export default {
       if (text.trim().length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1;
         this.onMessageWasSent({
-          author: 'me',
           type: 'text',
+          author: `me`,
           data: {
             text: text,
             meta: moment().format('DD-MM-YYYY m:h:s a')
@@ -91,12 +91,11 @@ export default {
       }
     },
     requestReply (message) {
-      const self = this;
-      self.showTyping('Omitobisam');
+      this.showTyping('Omitobisam');
       window.axios.post('https://dev.omitobisam.com/api/message', {text: message.data.text, discuss: self.discuss})
         .then(({data}) => {
-          this.addMessageToList(data.response);
-          self.discuss = data.discuss
+          this.addMessageToList({...data.response, suggestions: ['What is your email?', 'What is your phone number?']});
+          this.discuss = data.discuss;
         }).catch(({response}) => {
         // eslint-disable-next-line no-console
           console.log(response);
@@ -105,13 +104,12 @@ export default {
             author: `Omitobisam`,
             data: {
               text: `Hi. Can't quite give you the right response right now. I'll be right back.`,
-              meta: moment().format('DD-MM-YYYY m:h:s a')
-            },
-            suggestions: ['What is your email?', 'What is your phone number?']
+              meta: moment().format('DD-MM-YYYY HH:m:s a')
+            }
           };
           this.addMessageToList(message_);
         }).then(() => {
-          self.showTyping('');
+          this.showTyping('');
         })
     },
     addMessageToList (message) {
